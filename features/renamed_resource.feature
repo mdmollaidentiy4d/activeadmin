@@ -4,11 +4,13 @@ Feature: Renamed Resource
 
   Scenario: Default form with no config
     Given a category named "Music" exists
-    And a user named "John Doe" exists
+    And a blog_user named "John Doe" exists
     And I am logged in
     And a configuration of:
     """
+      ActiveAdmin.register Blog::User, as: 'User'
       ActiveAdmin.register Blog::Post, as: 'Post' do
+        belongs_to :user, optional: true
         permit_params :custom_category_id, :author_id, :title,
           :body, :position, :published_date, :starred
       end
