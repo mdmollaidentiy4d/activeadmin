@@ -32,7 +32,16 @@ Feature: Renamed Resource
     And I am logged in
     And a configuration of:
     """
-      ActiveAdmin.register Blog::User, as: 'User'
+      ActiveAdmin.register Blog::User, as: 'User' do
+        show do |user|
+          attributes_table do
+            row :posts do
+              link_to 'User Posts', admin_user_posts_path(user)
+            end
+          end
+        end
+      end
+
       ActiveAdmin.register Blog::Post, as: 'Post' do
         belongs_to :user, optional: true
         permit_params :custom_category_id, :author_id, :title,
@@ -51,3 +60,9 @@ Feature: Renamed Resource
     And I should see the attribute "Body" with "This is the body"
     And I should see the attribute "Category" with "Music"
     And I should see the attribute "Author" with "John Doe"
+    When I click "John Doe"
+    And I click "User Posts"
+    Then I should see a table header with "Title"
+    And I should see a table header with "Body"
+    And I should see "Hello World"
+    And I should see "This is the body"

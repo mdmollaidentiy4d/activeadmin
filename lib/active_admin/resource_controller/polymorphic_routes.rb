@@ -103,7 +103,17 @@ module ActiveAdmin
 
           args = []
 
-          route = record_list.map { |parent| parent.to_s }
+          route = record_list.map { |parent|
+            case parent
+            when Symbol, String
+              parent.to_s
+            else
+              model = parent.to_model
+              args << model
+              model_name = get_resource_name(model)
+              model_name.singular_route_key
+            end
+          }
 
           route << begin
             model = record.to_model
@@ -131,6 +141,7 @@ module ActiveAdmin
             end
             return found.resource_name if found
           end
+          klass.model_name
         end
 
         [nil, "new", "edit"].each do |action|
