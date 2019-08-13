@@ -12,6 +12,7 @@ require 'active_admin/resource/scope_to'
 require 'active_admin/resource/sidebars'
 require 'active_admin/resource/belongs_to'
 require 'active_admin/resource/ordering'
+require 'active_admin/resource/model'
 
 module ActiveAdmin
 
