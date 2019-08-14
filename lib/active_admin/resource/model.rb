@@ -4,11 +4,7 @@ module ActiveAdmin
       @record = record
 
       if resource
-        @record.extend Module.new {
-          define_method :model_name do
-            resource.resource_name
-          end
-        }
+        @record.extend(resource.resource_name_extension)
       end
     end
 
