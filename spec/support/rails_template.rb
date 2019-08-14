@@ -17,6 +17,7 @@ copy_file File.expand_path('templates/post_decorator.rb', __dir__), 'app/models/
 generate :migration, 'create_blog_posts title:string body:text published_date:date author_id:integer ' +
   "position:integer custom_category_id:integer starred:boolean foo_id:integer #{timestamps}"
 
+copy_file File.expand_path('templates/models/blog.rb', __dir__), 'app/models/blog.rb'
 copy_file File.expand_path('templates/models/blog/post.rb', __dir__), 'app/models/blog/post.rb'
 
 generate :migration, "create_profiles user_id:integer bio:text #{timestamps}"
