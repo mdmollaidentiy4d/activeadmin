@@ -19,20 +19,19 @@ module ActiveAdmin
       def map_named_resources_for(record_or_hash_or_array)
         return record_or_hash_or_array unless record_or_hash_or_array.is_a?(Array)
 
-        record_or_hash_or_array.map { |record| to_named_resource(record) }
+        namespace_name = record_or_hash_or_array.first.is_a?(String) ? record_or_hash_or_array.first : :root
+
+        record_or_hash_or_array.map { |record| to_named_resource(namespace_name, record) }
       end
 
-      def to_named_resource(record)
+      def to_named_resource(namespace_name, record)
         return record unless record.respond_to?(:to_model)
 
         klass = record.to_model
 
-        resource = nil
+        namespace = ActiveAdmin.application.namespace(namespace_name.to_sym)
 
-        ActiveAdmin.application.namespaces.each do |ns|
-          found = ns.resources[klass.class]
-          resource = found if found
-        end
+        resource = namespace.resources[klass.class]
 
         ActiveAdmin::Model.new(resource, record)
       end

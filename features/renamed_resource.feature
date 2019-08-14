@@ -47,6 +47,8 @@ Feature: Renamed Resource
         permit_params :custom_category_id, :author_id, :title,
           :body, :position, :published_date, :starred
       end
+
+      ActiveAdmin.register Blog::Post, as: 'Post2', namespace: 'admin2'
     """
     When I am on the index page for posts
     And I follow "New Post"
