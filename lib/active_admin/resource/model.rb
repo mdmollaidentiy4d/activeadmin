@@ -4,7 +4,7 @@ module ActiveAdmin
       @record = record
 
       if resource
-        @record = @record.extend Module.new {
+        @record.extend Module.new {
           define_method :model_name do
             resource.resource_name
           end
