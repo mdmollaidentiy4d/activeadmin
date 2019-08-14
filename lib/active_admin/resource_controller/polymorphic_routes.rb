@@ -17,12 +17,10 @@ module ActiveAdmin
       def map_named_resources_for(record_or_hash_or_array)
         return record_or_hash_or_array unless record_or_hash_or_array.is_a?(Array)
 
-        namespace_name = record_or_hash_or_array.first.is_a?(String) ? record_or_hash_or_array.first : :root
-
-        record_or_hash_or_array.map { |record| to_named_resource(namespace_name, record) }
+        record_or_hash_or_array.map { |record| to_named_resource(record) }
       end
 
-      def to_named_resource(namespace_name, record)
+      def to_named_resource(record)
         return record unless record.is_a?(resource_class)
 
         ActiveAdmin::Model.new(active_admin_config, record)
