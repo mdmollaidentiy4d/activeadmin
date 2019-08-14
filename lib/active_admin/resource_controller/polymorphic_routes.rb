@@ -4,8 +4,6 @@ require "active_admin/resource/model"
 module ActiveAdmin
   class ResourceController < BaseController
     module PolymorphicRoutes
-      extend ActiveSupport::Concern
-
       def polymorphic_url(record_or_hash_or_array, options = {})
         super(map_named_resources_for(record_or_hash_or_array), options)
       end
