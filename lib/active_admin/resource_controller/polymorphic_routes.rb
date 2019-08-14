@@ -30,9 +30,7 @@ module ActiveAdmin
         resource = nil
 
         ActiveAdmin.application.namespaces.each do |ns|
-          found = ns.resources.values.find do |res|
-            res.is_a?(ActiveAdmin::Resource) && res.resource_class == klass.class
-          end
+          found = ns.resources[klass.class]
           resource = found if found
         end
 
