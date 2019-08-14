@@ -48,7 +48,7 @@ Feature: Renamed Resource
           :body, :position, :published_date, :starred
       end
 
-      ActiveAdmin.register Blog::Post, as: 'Post2', namespace: 'admin2'
+      ActiveAdmin.register Blog::Post, as: 'Post2', namespace: :admin2
     """
     When I am on the index page for posts
     And I follow "New Post"
