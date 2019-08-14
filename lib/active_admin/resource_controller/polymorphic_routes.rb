@@ -23,15 +23,9 @@ module ActiveAdmin
       end
 
       def to_named_resource(namespace_name, record)
-        return record unless record.respond_to?(:to_model)
+        return record unless record.is_a?(resource_class)
 
-        klass = record.to_model
-
-        namespace = ActiveAdmin.application.namespace(namespace_name.to_sym)
-
-        resource = namespace.resources[klass.class]
-
-        ActiveAdmin::Model.new(resource, record)
+        ActiveAdmin::Model.new(active_admin_config, record)
       end
     end
   end
