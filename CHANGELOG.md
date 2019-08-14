@@ -7,7 +7,7 @@
 * Fix CSVBuilder not respecting `ActiveAdmin.application.csv_options = { humanize_name: false }` setting. [#5800] by [@HappyKadaver]
 * Fix crash when displaying current filters after filtering by a nested resource. [#5816] by [@deivid-rodriguez]
 * Fix pagination when `pagination_total` is false to not show a "Last" link, since it's incorrect because we don't have the total pages information. [#5822] by [@deivid-rodriguez]
-* Fix optional nested resources causing incorrect routes to be generated, when renamed resources (through `:as` option) are involved. [#5826] by [@ndbroadbent] and @deivid-rodriguez]
+* Fix optional nested resources causing incorrect routes to be generated, when renamed resources (through `:as` option) are involved. [#5826] by [@ndbroadbent], [@Kris-LIBIS] and [@deivid-rodriguez]
 
 ## 2.2.0 [☰](https://github.com/activeadmin/activeadmin/compare/v2.1.0..v2.2.0)
 
@@ -557,3 +557,4 @@ Please check [0-6-stable] for previous changes.
 [@jscheid]: https://github.com/jscheid
 [@violeta-p]: https://github.com/violeta-p
 [@ndbroadbent]: https://github.com/ndbroadbent
+[@Kris-LIBIS]: https://github.com/Kris-LIBIS
